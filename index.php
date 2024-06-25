@@ -24,18 +24,29 @@ require 'cek.php';
 
     <style>
         .navbar-text {
-            color: black; /* Set text color to black */
+            color: black;
+            /* Set text color to black */
         }
+
         nav.centered-nav {
-            background-color: #f8f9fa; /* Light background color */
-            padding: 10px; /* Padding for better spacing */
+            background-color: #f8f9fa;
+            /* Light background color */
+            padding: 10px;
+            /* Padding for better spacing */
             text-align: center;
         }
-        .sidebar-brand-text, .nav-link span {
-            color: #fff; /* Sidebar brand text color and Nav link text color */
+
+        .sidebar-brand-text,
+        .nav-link span {
+            color: #fff;
+            /* Sidebar brand text color and Nav link text color */
         }
-        .btn-primary, .btn-warning, .btn-danger {
-            margin: 5px; /* Add some margin for better spacing */
+
+        .btn-primary,
+        .btn-warning,
+        .btn-danger {
+            margin: 5px;
+            /* Add some margin for better spacing */
         }
     </style>
 
@@ -75,7 +86,7 @@ require 'cek.php';
                 <a class="nav-link" href="logout.php">
                     <span>Logout</span></a>
             </li>
-        
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -95,7 +106,7 @@ require 'cek.php';
 
                 <!-- Topbar -->
                 <nav class="centered-nav">
-                    
+
                 </nav>
 
                 <!-- Page Content -->
@@ -103,26 +114,25 @@ require 'cek.php';
                     <!-- Buttons -->
                     <div class="mb-4">
                         <button class="btn btn-primary" onclick="window.location.href='tambah.php'">Tambah Barang</button>
-                        <button class="btn btn-warning" onclick="window.location.href='edit.php'">Edit Barang</button>
                     </div>
 
                     <!-- Content for "Tambah Barang" -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Barang Keluar</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">List Barang</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start Date</th>
-                                            <th>Salary</th>
-                                            <th>Action</th>
+                                            <th>Nama Barang</th>
+                                            <th>Vendor</th>
+                                            <th>Tipe Barang</th>
+                                            <th>Jumlah Barang</th>
+                                            <th>Tanggal Masuk</th>
+                                            <th>Harga</th>
+                                            <th>Edit Barang</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -136,7 +146,11 @@ require 'cek.php';
                                             echo "<td>" . $row['age'] . "</td>";
                                             echo "<td>" . $row['start_date'] . "</td>";
                                             echo "<td>" . $row['salary'] . "</td>";
-                                            echo "<td><a href='edit.php?id=" . $row['id'] . "' class='btn btn-warning'>Edit</a></td>";
+                                            echo "<td>
+                                                    <a href='edit.php?id=" . $row['id'] . "' class='btn btn-warning'>Edit</a>
+                                                    <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to delete this item?\")'>Hapus</a>
+                                                    <a href='keluar_barang.php?id=" . $row['id'] . "' class='btn btn-primary' onclick='return confirm(\"Are you sure you want to move this item to Barang Keluar?\")'>Keluar</a>
+                                                  </td>";
                                             echo "</tr>";
                                         }
                                         ?>
@@ -145,21 +159,22 @@ require 'cek.php';
                             </div>
                         </div>
                     </div>
+
                     <!-- Content for "Edit Barang" -->
-                
-                                   
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+
+
+                    </tbody>
+                    </table>
                 </div>
-                <!-- End of Page Content -->
-
             </div>
-            <!-- End of Main Content -->
-
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Content -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -207,7 +222,7 @@ require 'cek.php';
 
 </body>
 
-    <tbody>
+<tbody>
     <?php
     $result = $conn->query("SELECT * FROM barang");
     while ($row = $result->fetch_assoc()) {
