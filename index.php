@@ -205,4 +205,21 @@ require 'cek.php';
 
 </body>
 
+    <tbody>
+    <?php
+    $result = $conn->query("SELECT * FROM barang");
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['position']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['office']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['age']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['start_date']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['salary']) . "</td>";
+        echo '<td><a href="edit.php?id=' . $row['id'] . '" class="btn btn-warning btn-sm">Edit</a></td>';
+        echo "</tr>";
+    }
+    ?>
+</tbody>
+
 </html>
