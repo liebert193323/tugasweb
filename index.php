@@ -108,8 +108,6 @@ require 'cek.php';
 
                     <!-- Content for "Tambah Barang" -->
                     <div class="card shadow mb-4">
-                    <div class="container-fluid">
-                    <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Barang Keluar</h6>
                         </div>
@@ -124,25 +122,29 @@ require 'cek.php';
                                             <th>Age</th>
                                             <th>Start Date</th>
                                             <th>Salary</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <!-- Add more rows as needed -->
+                                        <?php
+                                        $result = mysqli_query($conn, "SELECT * FROM barang");
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "<tr>";
+                                            echo "<td>" . $row['name'] . "</td>";
+                                            echo "<td>" . $row['position'] . "</td>";
+                                            echo "<td>" . $row['office'] . "</td>";
+                                            echo "<td>" . $row['age'] . "</td>";
+                                            echo "<td>" . $row['start_date'] . "</td>";
+                                            echo "<td>" . $row['salary'] . "</td>";
+                                            echo "<td><a href='edit.php?id=" . $row['id'] . "' class='btn btn-warning'>Edit</a></td>";
+                                            echo "</tr>";
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
-                            </form>
                         </div>
                     </div>
-
                     <!-- Content for "Edit Barang" -->
                 
                                    
